@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千岛API - 帮助中心</title>
+    <style>
+        /* --- 全局样式 --- */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            background-color: #e6f7ff; 
+            background-image: linear-gradient(to bottom, #e6f7ff 0%, #ffffff 50%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px 40px 20px; 
+        }
+
+        /* --- 卡片基础样式 --- */
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e8e8e8;
+        }
+
+        /* --- 第一段：标题卡片 --- */
+        .title-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #A0D9F6; 
+            padding: 20px;
+            border-radius: 12px; 
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(160, 217, 246, 0.4);
+            text-align: center;
+        }
+
+        .title-card .top-image {
+            width: 150px; 
+            height: auto;
+            margin-bottom: 15px;
+            animation: breathe 2.5s ease-in-out infinite alternate;
+        }
+
+        .title-card .title-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff; 
+        }
+
+        .title-card .title-text span {
+            display: inline-block;
+            margin: 0 4px;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        
+        .title-card .title-text span:nth-child(1):hover { transform: scale(1.25) rotate(6deg); }
+        .title-card .title-text span:nth-child(2):hover { transform: scale(1.25) rotate(-4deg); }
+        .title-card .title-text span:nth-child(3):hover { transform: scale(1.25) rotate(8deg); }
+        .title-card .title-text span:nth-child(4):hover { transform: scale(1.25) rotate(-2deg); }
+        .title-card .title-text span:nth-child(5):hover { transform: scale(1.25) rotate(5deg); }
+        .title-card .title-text span:nth-child(6):hover { transform: scale(1.25) rotate(-7deg); }
+        .title-card .title-text span:nth-child(7):hover { transform: scale(1.25) rotate(3deg); }
+
+        @keyframes breathe {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        /* 教程按钮样式 */
+        .tutorial-button {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 25px auto;
+            padding: 10px 30px;
+            border-radius: 20px; 
+            background: #ffffff;
+            color: #555;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .tutorial-button:hover {
+            transform: translateY(-3px);
+            background-color: #f8f8f8;
+        }
+
+
+        /* --- 第二段：QQ群组 --- */
+        .qq-group-list a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            margin-bottom: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .qq-group-list a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .qq-group-list a:last-child {
+            margin-bottom: 0;
+        }
+
+        .qq-group-list .group-1,
+        .qq-group-list .group-2 { 
+            background: #89CFF0; 
+        }
+
+        .qq-group-list .qq-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .card .promo-text {
+            font-size: 14px;
+            color: #888;
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        .card .small-text {
+            font-size: 14px;
+            color: #888;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .card .small-text p {
+            margin: 8px 0;
+        }
+
+        .recharge-item-flex {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .recharge-item-flex p {
+            margin: 0;
+        }
+
+        .recharge-item-flex a {
+            margin-left: 8px;
+        }
+        
+        #taobao-link-wrapper {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        /* 【关键修改】进一步缩小图片尺寸 */
+        #taobao-link-wrapper img {
+            height: 22px;
+            vertical-align: middle;
+        }
+
+        /* 【关键修改】进一步缩小“点我”按钮 */
+        #taobao-link-wrapper .click-me-text {
+            background-color: #89CFF0;
+            color: white;
+            padding: 1px 8px;      /* 再次缩小内边距 */
+            border-radius: 12px;
+            font-size: 12px;       /* 再次缩小字体 */
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* --- 第三/四/五段：通用内容卡片 --- */
+        .content-card h3 {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .content-card h3 .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .content-card ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .content-card li {
+            margin-bottom: 8px;
+        }
+
+        .content-card .code {
+            background-color: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            word-break: break-all;
+        }
+        
+        .content-card .highlight {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        
+        .content-card .sub-note {
+            font-size: 13px;
+            color: #999;
+            background-color: #fafafa;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 第一段：标题卡片 -->
+        <div class="title-card">
+            <img src="https://i.postimg.cc/YhWg9r5G/qiandao-2.png" alt="顶部图标" class="top-image">
+            <div class="title-text">
+                <span>千</span><span>岛</span><span>A</span><span>P</span><span>I</span><span>站</span><span>点</span>
+            </div>
+        </div>
+
+        <!-- 教程按钮 -->
+        <a href="https://docs.qq.com/doc/DWGhKT2FxQXNoRE5u" target="_blank" class="tutorial-button">
+            设置教程
+        </a>
+
+        <!-- 第二段：售后群与充值 -->
+        <div class="card">
+            <div class="qq-group-list">
+                <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=IyxamkW8ifDynb2jq76tSYSS4q8Y-5SE&authKey=7juIRyXIBFYq3zOEMadFVrFMqbi85g8MofXOjKJprtq2KhcRKsNbBPryHQ4LY7ej&noverify=0&group_code=1064364722" target="_blank" class="group-1">
+                    <img src="https://api.iconify.design/ri:qq-fill.svg?color=white" alt="QQ" class="qq-icon">
+                    售后一群 1064364722
+                </a>
+                <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=OwALvGipS79c9WeOLZDEMY2GBokzbbzb&authKey=A3aDI5do9qOhDg8INexxOcQz0dAA1Xf4sgIe9%2BnyaJc5Xjs9snLI4PMeYw9dhdR8&noverify=0&group_code=1034709850" target="_blank" class="group-2">
+                    <img src="https://api.iconify.design/ri:qq-fill.svg?color=white" alt="QQ" class="qq-icon">
+                    售后二群 1034709850
+                </a>
+            </div>
+            <p class="promo-text">入群领 <strong>200额度</strong>！模型若有任何调整或波动，我们会第一时间在群里通知，让大家使用更安心！</p>
+            <div class="small-text">
+                <p><strong>关于充值:</strong></p>
+                <p>1r= 100•ᴥ• 额度</p>
+                <p>💰 群内找客服直接人工充值</p>
+                <div class="recharge-item-flex">
+                    <p>🍑 搜索“千岛API”自动发兑换码</p>
+                    <a href="https://m.tb.cn/h.SMCqDMImsLeF1Ge" target="_blank" id="taobao-link-wrapper">
+                        <img src="https://i.postimg.cc/pp0PjzKF/222.png" alt="自动发货">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三段：获取令牌 -->
+        <div class="card content-card">
+            <h3>
+                <img src="https://api.iconify.design/mdi:key-chain-variant.svg?color=%234a90e2" alt="令牌" class="icon">
+                获取令牌
+            </h3>
+            <ol>
+                <li>点击左上侧“三”→ <strong>令牌管理</strong></li>
+                <li>显示操作栏，点击 <strong>添加令牌</strong></li>
+                <li>名称随意填写，勾选 <strong>无限额度</strong>，<strong>永不过期</strong>，分组选择 <span class="highlight">千岛酱</span></li>
+            </ol>
+            <p>酒馆、Tavo等端点地址：<br><code class="code">https://qiandao.hkgepi.cn/v1</code></p>
+            <p>小手机、lovemo等端点地址：<br><code class="code">https://qiandao.hkgepi.cn</code></p>
+            <div class="sub-note">
+                💡 以上地址均可国内直接连接使用。
+            </div>
+        </div>
+
+        <!-- 第四段：分组介绍 -->
+        <div class="card content-card">
+            <h3>
+                <img src="https://api.iconify.design/mdi:shape-outline.svg?color=%2350e3c2" alt="分组" class="icon">
+                分组介绍
+            </h3>
+            <p>可选择分组：</p>
+            <ul>
+                <li><strong>千岛酱</strong> —— 默认全模型</li>
+                <li><strong>柠檬酱</strong> —— Gemini专属</li>
+                <li><strong>凯撒酱</strong> —— Claude专属</li>
+                <li><strong>芥末酱</strong> —— Deepseek专属</li>
+                <li><strong>麻辣烫</strong> —— Gemini特殊官转渠道，作为福利，只少量提供</li>
+                <li><strong>石子涟漪</strong> —— Gemini官转，特价0.01（一额度）一次哈基米。每周五开放4000次免费次数。</li>
+            </ul>
+        </div>
+
+        <!-- 第五段：免责声明 -->
+        <div class="card content-card">
+            <h3>
+                <img src="https://api.iconify.design/mdi:shield-check-outline.svg?color=%23f5a623" alt="声明" class="icon">
+                服务声明
+            </h3>
+            <p class="small-text" style="border-top: none; margin-top: 0; padding-top: 0;">
+                请遵守《生成式人工智能服务管理暂行办法》及相关法律法规，本站提供的Google及Claude等API相关资源，仅限合法技术学习与测试用途，严禁任何违反中国及国际法律法规的行为。使用者需自行承担合规责任，本群及资源提供者不承担任何连带责任。
+                <br><br>
+                所有使用者必须在遵守国家法律法规的前提下使用本服务。
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taobaoLink = document.getElementById('taobao-link-wrapper');
+            if (taobaoLink) {
+                setTimeout(function() {
+                    taobaoLink.innerHTML = '<span class="click-me-text">点我</span>';
+                }, 2000); // 2000毫秒 = 2秒
+            }
+        });
+    </script>
+
+</body>
+</html>
